@@ -1,0 +1,31 @@
+.formControl {
+  display: flex;
+}
+
+.input {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  appearance: none;
+
+  &:checked {
+    + .text {
+      background: var(--secondary-background-color);
+      border-color: var(--secondary-background-color);
+    }
+  }
+}
+
+.text {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--text-color);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all $duration $easing;
+
+  @media (any-hover: hover) {
+    &:hover {
+      border-color: var(--accent-color);
+    }
+  }
+}

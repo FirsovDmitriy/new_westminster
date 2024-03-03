@@ -1,0 +1,12 @@
+.showcase {
+  --col-min-width: 18.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .showcase {
+    // --col-min-width: 8.5rem;
+  }
+}

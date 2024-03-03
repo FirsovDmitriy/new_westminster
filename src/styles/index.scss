@@ -1,0 +1,47 @@
+@import 'pallete';
+@import 'font';
+
+*, *::before *::after {
+  box-sizing: border-box;
+}
+
+.page, .page__body {
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  font: {
+    family: 'DM Sans', sans-serif;
+    weight: 400;
+    size: 1rem;
+  }
+  color-scheme: light dark;
+}
+
+.page__body {
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+.page__wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__content {
+  flex: auto;
+  display: grid;
+}
+
+@import 'common.blocks/link';
+@import 'common.blocks/typography';
+@import 'common.blocks/backdrop';
+@import 'common.blocks/icon';
+@import 'common.blocks/buttons';
+@import 'common.blocks/image';
+@import 'common.blocks/form-field';
+@import './common.blocks/checkbox';

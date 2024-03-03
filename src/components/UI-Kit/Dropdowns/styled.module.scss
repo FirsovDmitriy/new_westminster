@@ -1,0 +1,37 @@
+.dropdowns {
+  position: relative;
+}
+
+.wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 30rem;
+  max-height: 55rem;
+  background: var(--background-color);
+  border: 1px solid var(--line-color);
+  padding: 0;
+}
+
+.item {
+  list-style: none;
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity $duration $easing;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity $duration $easing;
+}

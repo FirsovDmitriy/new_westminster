@@ -1,0 +1,18 @@
+.quantityInput {
+  display: inline-flex;
+  align-items: center;
+  background: var(--secondary-background-color);
+}
+
+.input {
+  flex: auto;
+  width: 1.4rem;
+  padding: 0.6rem 0;
+  border: none;
+  text-align: center;
+}
+
+.button {
+  padding: 0 1.2rem;
+  height: 3.4rem;
+}

@@ -1,0 +1,41 @@
+.form-field {
+  background: transparent;
+  border: 1px solid (var(--line-color));
+  border-radius: $radius;
+  width: 100%;
+  font: {
+    size: 1rem;
+    family: inherit;
+  }
+  color: inherit;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  @media (any-hover: hover) {
+    &:hover {}
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus-visible {
+    box-shadow: 0 0 0px 1000px var(--background-color) inset;
+  }
+
+  &::placeholder {
+    color: var(--secondary-text-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--line-color);
+    outline-offset: 0.2rem;
+  }
+
+  &:disabled {
+    background: var(--disabled-color);
+    pointer-events: none;
+  }
+}
+
+.textarea {
+  min-height: 55rem;
+}

@@ -1,0 +1,8 @@
+.resetButton {
+  gap: 0.6rem;
+  @media (any-hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

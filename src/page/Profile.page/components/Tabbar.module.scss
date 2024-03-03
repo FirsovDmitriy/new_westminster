@@ -1,0 +1,14 @@
+.tabbar {
+  border-bottom: 1px solid var(--secondary-text-color);
+  margin: 0 0 2.5rem 0;
+}
+
+.tabbarContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 3.2rem;
+}
+
+.button {
+  gap: 0.8rem;
+}

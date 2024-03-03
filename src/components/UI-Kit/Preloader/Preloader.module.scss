@@ -1,0 +1,51 @@
+.preloader {
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: var(--blackout);
+}
+
+.content {
+  place-self: center;
+  color: var(--background-color);
+}
+
+.icon {
+  display: flex;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.iconCircle {
+  animation: dash 1.5s $easing infinite;
+  stroke: var(--background-color);
+  stroke: {
+    dasharray: 150,200;
+    dashoffset: -10;
+    linecap: round;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}

@@ -1,0 +1,63 @@
+.card {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (any-hover: hover) {
+    &:hover {
+      .action {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 0;
+  padding-top: 100%;
+  overflow: hidden;
+  border-radius: $radius;
+}
+
+.img {
+  display: flex;
+  position: absolute;
+  inset: -50%;
+  margin: auto;
+  object-fit: cover;
+}
+
+.action {
+  position: absolute;
+  inset: auto 0 0 0;
+  transform: translateY(100%);
+  transition: transform $duration $easing;
+}
+
+.addToCart {
+  border-radius: 0;
+  width: 100%;
+}
+
+.cardTitle {
+  margin: 0 0 1rem 0;
+}
+
+.price {
+  color: var(--accent-color);
+}
+
+@media (hover: none) {
+  .action {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {}

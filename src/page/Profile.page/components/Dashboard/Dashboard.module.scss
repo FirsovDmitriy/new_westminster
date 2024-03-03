@@ -1,0 +1,96 @@
+.col {
+  background: var(--secondary-background-color);
+  width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+.profilePicture {
+  position: relative;
+}
+
+.imageWrapper {
+  background-color: darkslategray;
+  width: 164px;
+  height: 164px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.menu {
+  position: absolute;
+  right: 0.625rem;
+  bottom: 0;
+}
+
+.editButton {
+  background: rebeccapurple;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+.button {
+  width: 140px;
+  padding: 8px 16px;
+  justify-content: flex-start;
+  transition: color $duration $easing;
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+
+
+.editPicture {
+  width: 20rem;
+  
+}
+
+.inputFile {
+  width: 100%;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.inputFileRow {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.iconDelete {
+  font-size: 1.5rem;
+}
+
+.input {
+  appearance: none;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.buttonSubmit {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.logoutButton {
+  transition: color $duration $easing;
+  gap: 0.6rem;
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
