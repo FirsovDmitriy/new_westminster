@@ -66,9 +66,15 @@ const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
 
   const handleSetProfileImage = async (event: React.SyntheticEvent) => {
     event.preventDefault()
-    const resp = await profileUpdate({ id: user?.id, ...{ avatar: imagePath } })
-    console.log('Profile update', resp)
-    dispatch(updateCredentials(resp))
+    
+    try {
+      const resp = await profileUpdate({ id: user?.id, ...{ profileImage: imagePath } })
+      dispatch(updateCredentials(resp))
+
+      // setShow(false)
+    } catch (error) {
+      console.log('Error...')
+    }
   }
 
   return (

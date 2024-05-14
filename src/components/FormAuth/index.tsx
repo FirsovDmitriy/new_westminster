@@ -68,6 +68,7 @@ const FormAuth = () => {
 
       dispatch(setCredentials(data))
       navigate(fromPage, { replace: true })
+      navigate('/')
 
     } catch (error) {
       console.log('Error sign in', error)
