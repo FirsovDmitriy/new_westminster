@@ -1,0 +1,45 @@
+.item {
+  width: 100%;
+  display: flex;
+  gap: 1.6rem;
+  border-bottom: 1px solid var(--line-color);
+  padding: 0 0 1.25rem 0;
+}
+
+.wrapperImage {
+  flex: 1 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+}
+
+.wrapperContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.2rem;
+}
+
+@media (max-width: 576px) {
+  .wrapperContent {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}

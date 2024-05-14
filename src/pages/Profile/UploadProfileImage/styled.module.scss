@@ -1,0 +1,60 @@
+.uploadAvatar {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.input {
+  appearance: none;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  width: 448px;
+  overflow: auto;
+}
+
+.previewHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+}
+
+.previewTitle {
+  text-align: start;
+}
+
+.previewForm {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.previewWrapperImage {
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.previewImage {}
+
+.previewFooter {
+  justify-content: center;
+  padding: 1px;
+  display: flex; 
+}
+
+.previewClose {}
+
+@media (max-width: 768px) {
+  .preview {
+    width: 100%;
+  }
+}

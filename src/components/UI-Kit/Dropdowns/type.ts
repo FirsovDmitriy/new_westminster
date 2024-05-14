@@ -8,15 +8,11 @@ export interface DropdownProps {
   className?: string
 }
 
-export interface Context {
-  show: boolean
-}
-
 export type TriggerProps = {
   children: DropdownSlot
 }
 
-export type WrapperProps = {
+export type MenuProps = {
   children: DropdownSlot
   show: boolean
 }

@@ -8,5 +8,6 @@
 @media (max-width: 600px) {
   .showcase {
     // --col-min-width: 8.5rem;
+    grid-template-columns: 1fr;
   }
 }

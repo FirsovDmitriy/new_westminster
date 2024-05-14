@@ -1,6 +1,6 @@
 import React from 'react'
 import Backdrop from '../Backdrop'
-import styled from './Popup.module.scss'
+import styled from './styled.module.scss'
 import Portal from '../../Portal'
 import AppCSSTransition from '../../AppCSSTransition'
 import { PopupProps } from './type'
@@ -9,9 +9,9 @@ import cn from 'classnames'
 const Popup: React.FC<PopupProps> = props => {
   const {
     children,
+    className,
     onClose,
-    show,
-    className
+    show
   } = props
 
   const ref = React.useRef(null)
@@ -25,16 +25,17 @@ const Popup: React.FC<PopupProps> = props => {
 
   return (
     <>
-      <Backdrop onClose={onClose} visible={show} />
       <Portal>
+        <Backdrop onClose={onClose} visible={show} />
         <AppCSSTransition
           className={classNames}
           show={show}
           nodeRef={ref}
         >
           <div
-            onClick={(event: React.MouseEvent) => event.stopPropagation()}
             className={cn(className, styled.popup)}
+            ref={ref}
+            onClick={(event: React.SyntheticEvent) => event.stopPropagation()}
           >
             { children }
           </div>

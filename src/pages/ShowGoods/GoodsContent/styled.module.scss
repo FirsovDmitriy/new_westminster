@@ -1,0 +1,70 @@
+.content {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  border: 1px solid var(--line-color);
+  border-radius: $radius;
+  padding: 2.8rem;
+}
+
+.back {
+  gap: 0.4rem;
+}
+
+.price {
+  font: {
+    weight: 500;
+    size: 24px;
+  }
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--line-color);
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.favorite {
+  gap: 0.4rem;
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.button {
+  flex: auto;
+}
+
+.meta {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.metaText {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.metaColor {
+  display: flex;
+  color: var(--secondary-text-color);
+}
+
+@media (max-width: 992px) {
+  .content {
+    padding: 1rem;
+  }
+}

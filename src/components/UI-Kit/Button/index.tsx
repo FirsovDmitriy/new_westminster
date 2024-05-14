@@ -10,15 +10,20 @@ const Button: React.FC<ButtonProps> = props => {
     ...restProps
   } = props
 
-  let styles: string = ''
+  let styleVariant: string = ''
 
   switch (variant) {
     case 'contained':
-      styles = 'button_contained'
+      styleVariant = 'button_contained'
       break;
     case 'outlined':
-      styles = 'button_outlined'
+      styleVariant = 'button_outlined'
       break;
+    case 'ghost': 
+      styleVariant = 'button_ghost'
+      break
+    case 'text':
+      styleVariant = 'button_text'
   }
 
   return (
@@ -26,7 +31,7 @@ const Button: React.FC<ButtonProps> = props => {
       className={cn(
         className,
         'base-button button',
-        styles
+        styleVariant
       )}
       { ...restProps }
     >

@@ -1,0 +1,34 @@
+.quantityInput {
+  display: inline-flex;
+  align-items: center;
+  background: var(--secondary-background-color);
+  border-radius: $radius;
+}
+
+.input {
+  background-color: transparent;
+  font: {
+    size: 1rem;
+  }
+  flex: auto;
+  width: 2.4rem;
+  padding: 0.6rem 0;
+  border-radius: $radius;
+  border: none;
+  text-align: center;
+  &:focus-visible {
+    outline: 2px solid var(--line-color);
+    outline-offset: 6px;
+
+  }
+}
+
+.button {
+  width: 3.4rem;
+  height: 2.625rem;
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--line-color) !important;
+    }
+  }
+}

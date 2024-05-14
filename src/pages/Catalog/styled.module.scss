@@ -1,0 +1,39 @@
+.section {}
+
+.filterRow {
+  padding: 0 0 1.5rem 0;
+}
+
+.priceSort {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.priceSortLabel {
+  flex-shrink: 0;
+}
+
+.pagination {
+  margin-top: auto;
+  padding-top: 2.85rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.paginationActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.paginationInfo {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.text {
+  display: flex;
+}

@@ -1,0 +1,56 @@
+.form {
+  max-width: 37.5rem;
+  width: 100%;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.formRow {}
+
+.label {
+  margin: 0 0 0.8rem 0;
+  display: block;
+  transition: color $duration $easing;
+  cursor: pointer;
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+}
+
+.toggleButton {
+  position: absolute;
+  height: 100%;
+  right: 1.2rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footerText {
+  display: flex;
+  gap: 0.4rem;
+}
+
+@media (max-width: 425px) {
+  .formWrapper {
+    gap: 32px;
+  }
+
+  .footerText {
+    flex-direction: column;
+  }
+}

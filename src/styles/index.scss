@@ -1,7 +1,8 @@
-@import 'pallete';
+@import 'scrollbar';
 @import 'font';
+@import 'pallete';
 
-*, *::before *::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -12,7 +13,7 @@
 
 .page {
   font: {
-    family: 'DM Sans', sans-serif;
+    family: 'Poppins', sans-serif;
     weight: 400;
     size: 1rem;
   }
@@ -40,8 +41,7 @@
 @import 'common.blocks/link';
 @import 'common.blocks/typography';
 @import 'common.blocks/backdrop';
-@import 'common.blocks/icon';
 @import 'common.blocks/buttons';
 @import 'common.blocks/image';
 @import 'common.blocks/form-field';
-@import './common.blocks/checkbox';
+@import 'common.blocks/checkbox';

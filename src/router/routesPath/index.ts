@@ -1,11 +1,11 @@
 const routesPath = {
   HOME: '/',
   CATALOG: '/catalog',
-  DETAIL_PRODUCT: '/product/:id',
-  DELIVERY: '/delivery',
-  CONTACT: '/contact',
+  SHOW_GOODS: '/goods/:id',
   PROFILE: '/profile',
-  AUTH: '/auth',
+  EDIT_PROFILE: '/profile/edit',
+  SIGN_IN: '/sign_in',
+  REGISTRATION: '/registration',
   NOT_FOUND: '*'
 } as const
 

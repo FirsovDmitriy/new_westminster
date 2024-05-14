@@ -1,0 +1,30 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.title {
+  grid-column: span 7;
+}
+
+.themeSelection {
+  grid-column: span 5;
+}
+
+.text {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    gap: 1.5rem;
+  }
+  
+  .title {
+    grid-column: span 12;
+  }
+
+  .themeSelection {
+    grid-column: span 12;
+  }
+}

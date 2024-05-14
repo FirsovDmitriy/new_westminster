@@ -1,0 +1,40 @@
+.toast {
+  position: fixed;
+  bottom: 1.85rem;
+  left: 2rem;
+  z-index: 1;
+  width: 300px;
+
+  background-color: var(--secondary-background-color);
+  padding: 1.25rem;
+  border-radius: $radius;
+  &_success {
+    background: #54de62;
+  }
+
+  &_error {
+    background: var(--error-color);
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  color: var(--background-color);
+}
+
+.icon {
+  color: inherit;
+}
+
+.title {
+  font: {
+    weight: 500;
+  }
+}
+
+@media (max-width: 992px) {
+  .toast {
+    left: calc(50% - (300px / 2));
+  }
+}

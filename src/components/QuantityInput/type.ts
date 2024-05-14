@@ -1,6 +1,5 @@
-export type QuantityProps = {
-  quantity: number
-  onCount: (parametr: func) => void
-}
+import { Goods } from "@/types/Goods"
 
-type func = (parametr: number) => number
+export type QuantityProps = {
+  item: Goods
+}

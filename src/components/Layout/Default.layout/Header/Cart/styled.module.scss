@@ -1,0 +1,49 @@
+.cartContainer {
+  display: flex;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  &::after {
+    position: absolute;
+    top: -0.75rem;
+    right: -0.75rem;
+    content: attr(data-goodstotal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: {
+      size: 14px;
+    }
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary-background-color);
+    border-radius: 50%;
+  }
+}
+
+.contentHide {
+  &::after {
+    display: none;
+  }
+}
+
+// transition animation
+.enter {
+  transform: translateX(100%);
+}
+
+.enterActive {
+  transform: translateX(0);
+  transition: transform $duration $easing;
+}
+
+.exit {
+  transform: translateX(0);
+}
+
+.exitActive {
+  transform: translateX(100%);
+  transition: transform $duration $easing;
+}

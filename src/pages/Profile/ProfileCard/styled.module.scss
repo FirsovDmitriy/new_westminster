@@ -1,0 +1,68 @@
+.profileCard {
+  background-color: var(--secondary-background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  padding: 2.8rem 1.2rem;
+}
+
+.avatar {
+  position: relative;
+}
+
+.imageWrapper {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.editButton {
+  background: #786efe;
+  transition: opacity $duration $easing;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.8;
+    }
+    
+  }
+}
+
+.item {
+  transition: color $duration $easing;
+  padding: 0.4rem 1rem;
+  color: var(--text-color);
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.link {
+  align-items: center;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.logoutButton {
+  transition: color $duration $easing;
+  gap: 0.6rem;
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}

@@ -1,10 +1,6 @@
-import React from 'react'
 import { CheckboxProps } from './type'
 
-const Checkbox: React.FC<CheckboxProps> = props => {
-  const {
-    label
-  } = props
+const Checkbox = ({ label }: CheckboxProps) => {
   
   return (
     <label className='checkbox'>

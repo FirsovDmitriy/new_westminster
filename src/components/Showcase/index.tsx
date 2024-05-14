@@ -1,19 +1,25 @@
-import React from 'react'
 import styled from './styled.module.scss'
 import Card from '../Card'
 import Container from '../UI-Kit/Container'
+import { Goods } from '@/types/Goods'
 
-const Showcase: React.FC = () => {
+interface ShowcaseProps {
+  goods: Goods[]
+}
+
+const Showcase = (props: ShowcaseProps) => {
+  const { goods } = props
+
   return (
     <Container className={styled.showcase}>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {goods
+        ?.filter(item => item.status === 'active')
+        .map(item => (
+          <Card
+            item={item}
+            key={item.id}
+          />
+        ))}
     </Container>
   )
 }

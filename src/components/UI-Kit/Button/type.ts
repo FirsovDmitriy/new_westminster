@@ -1,6 +1,6 @@
 import React from "react"
 
-export type ButtonProps = {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   className?: string
   type?: 'button' | 'submit'
@@ -8,5 +8,5 @@ export type ButtonProps = {
   /**
    * @default 'contained'
    */
-  variant?: 'contained' | 'outlined'
+  variant?: 'contained' | 'outlined' | 'ghost' | 'text'
 }

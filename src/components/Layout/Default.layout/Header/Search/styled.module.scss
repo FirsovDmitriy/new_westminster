@@ -1,0 +1,99 @@
+.searchForm {
+  // display: flex;
+}
+
+.button, .submitButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 80vh;
+  background-color: var(--background-color);
+}
+
+.wrapper {
+  padding: 12px 100px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.searchField {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.row {
+  position: relative;
+  display: flex;
+}
+
+.formReset {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  right: 2.4rem;
+}
+
+.formControl {}
+
+.submitButton {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  height: 100%;
+}
+
+.content {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.noResults {
+  text-align: center;
+}
+
+.enter {
+  transform: translateY(-100%);
+}
+
+.enterActive {
+  transform: translateY(0);
+  transition: transform $duration $easing;
+}
+
+.exit {
+  transform: translateY(0);
+}
+
+.exitActive {
+  transform: translateY(-100%);
+  transition: transform $duration $easing;
+}
+
+@media (max-width: 992px) {
+
+  .wrapper {
+    padding: 12px;
+  }
+
+  .button {
+    // display: none;
+  }
+
+  .form {
+    flex: auto;
+    // display: flex;
+  }
+}

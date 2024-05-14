@@ -1,0 +1,38 @@
+.section {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.label {
+  grid-column: span 5;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2.5rem;
+}
+
+.title {
+  width: min-content;
+  text-align: end;
+}
+
+.main {
+  grid-column: span 7;
+  border-left: 1px solid var(--accent-color);
+  padding: 2.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .label {
+    display: none;
+  }
+
+  .main {
+    grid-column: span 12;
+    border: none;
+  }
+}

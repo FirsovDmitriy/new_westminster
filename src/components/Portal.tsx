@@ -8,6 +8,7 @@ type PortalProps = {
 const Portal: React.FC<PortalProps> = ({ children }) => {
 
   const container = document.createElement('div')
+  container.dataset.portal = ''
   const [root] = useState(container)
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const Portal: React.FC<PortalProps> = ({ children }) => {
     return () => {
       root.remove()
     }
-  })
+  }, [])
 
   return (
     <React.Fragment>

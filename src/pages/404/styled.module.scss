@@ -1,0 +1,13 @@
+.errorPage {
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  flex: auto;
+}
+
+.errorPage__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}

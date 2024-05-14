@@ -1,7 +1,6 @@
-import React from 'react'
 import { TriggerProps } from './type'
 
-const Trigger: React.FC<TriggerProps> = ({ children }) => {
+const Trigger = ({ children }: TriggerProps) => {
   return (
     <div>
       { children }

@@ -1,13 +1,13 @@
 import React from 'react'
-import AppCSSTransition from '../../AppCSSTransition'
-import styled from './Backdrop.module.scss'
+import AppCSSTransition from '@/components/AppCSSTransition'
+import styled from './styled.module.scss'
 
-type BackdropProps = {
+interface BackdropProps {
   visible: boolean
   onClose: () => void
 }
 
-const Backdrop: React.FC<BackdropProps> = ({ visible, onClose }) => {
+const Backdrop = ({ visible, onClose }: BackdropProps) => {
 
   const ref = React.useRef(null)
 
@@ -23,7 +23,6 @@ const Backdrop: React.FC<BackdropProps> = ({ visible, onClose }) => {
       show={visible}
       className={classNames}
       nodeRef={ref}
-
     >
       <div
         role='button'

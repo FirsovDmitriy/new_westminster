@@ -1,38 +1,34 @@
-import React from 'react'
-import styled from './Toast.module.scss'
+import styled from './styled.module.scss'
 import { ToastProps } from './type'
-import Typography from '../Typography'
-import Portal from '../../Portal'
+import { X } from 'lucide-react'
+import IconButton from '@/components/UI-Kit/IconButton'
+import useAppDispatch from '@/hooks/useAppDispatch'
+import { remove } from './toast.slice'
+import cn from 'classnames'
 
-const Toast: React.FC<ToastProps> = props => {
-  const {
-    title,
-    text
-  } = props
+const Toast = ({ toast }: ToastProps) => {
+  const { id, status = 'default', isClosable = false } = toast
+  const dispatch = useAppDispatch()
 
-  const [show, setShow] = React.useState(true)
+  const handleClose = () => {
+    dispatch(remove(id))
+  }
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setShow(false)
-    }, 10000)
-  }, [])
-
-  if(!show) return null
- 
   return (
-    <Portal>
-      <div className={styled.toast}>
-        <div>
-          <Typography tag='h4'>
-            { title }
-          </Typography>
-          <p>
-            { text }
-          </p>
-        </div>
+    <div className={cn(
+      styled.toast,
+      {
+        [styled.toast_error]: status === 'error',
+        [styled.toast_success]: status === 'success'
+      }
+    )}>
+      <div className={styled.row}>
+        <p className={styled.title}>{toast.title}</p>
+        {isClosable && <IconButton onClick={handleClose} className={styled.icon}>
+          <X />
+        </IconButton>}
       </div>
-    </Portal>
+    </div>
   )
 }
 

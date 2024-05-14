@@ -1,0 +1,51 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.title {
+  grid-column: span 5;
+}
+
+.col {
+  grid-column: span 7;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.label {
+  grid-column: span 12;
+}
+
+.textField {
+  grid-column: span 12;
+}
+
+.actions {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 992px) {
+  .form {
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+  }
+
+  .title {
+    grid-column: span 12;
+  }
+
+  .col {
+    grid-column: span 12;
+  }
+}

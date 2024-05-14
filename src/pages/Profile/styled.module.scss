@@ -1,0 +1,14 @@
+.profile {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.col {
+  grid-column: -5 / span 4;
+}
+
+@media (max-width: 992px) {
+  .col {
+    grid-column: span 12;
+  }
+}

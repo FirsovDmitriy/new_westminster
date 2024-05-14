@@ -1,8 +1,7 @@
-import React from "react"
-import styled from "./Preloader.module.scss"
-import Portal from "../../Portal"
+import styled from "./styled.module.scss"
+import Portal from "@/components/Portal"
 
-const Preloader: React.FC = () => (
+const Preloader = () => (
     <Portal>
       <div className={styled.preloader}>
         <div className={styled.content}>

@@ -1,31 +1,24 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
-import cn from "classnames"
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import cn from 'classnames'
 
 type AppLinkProps = {
   children: React.ReactNode
   href: string
   className?: string
   activeClass?: string
-};
+}
 
-const AppLink: React.FC<AppLinkProps> = props => {
-  const {
-    children,
-    className,
-    href,
-    activeClass
-  } = props;
+const AppLink = (props: AppLinkProps) => {
+  const { children, className, href, activeClass, ...restProps } = props
 
   return (
     <NavLink
       to={href}
-      className={({ isActive }) => cn(
-        isActive ? activeClass : null,
-        'link',
-        className
-      )}
-    >
+      className={({ isActive }) =>
+        cn(isActive ? activeClass : null, 'link', className)
+      }
+      {...restProps}>
       {children}
     </NavLink>
   )

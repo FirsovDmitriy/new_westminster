@@ -1,0 +1,15 @@
+.card {
+  border-bottom: 1px solid var(--line-color);
+  padding: 1rem;
+  max-width: 400px;
+}
+
+.link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+}
+
+.contentWrapper {
+  padding-top: 0.5rem;
+}

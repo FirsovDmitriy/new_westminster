@@ -1,11 +1,11 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './styles/index.scss'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import AppRouter from './router/index.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/index.ts'
-import { IconContext } from 'react-icons'
+import AppRouter from './router/index.tsx'
+import './styles/index.scss'
+import ThemeColor from './hoc/ThemeColor.tsx'
+import Toaster from './components/UI-Kit/Toast/Toaster'
 
 const router = createBrowserRouter(AppRouter)
 const element = document.querySelector('#root') as HTMLDivElement
@@ -13,9 +13,14 @@ const element = document.querySelector('#root') as HTMLDivElement
 ReactDOM.createRoot(element).render(
   <>
     <Provider store={ store }>
-      <IconContext.Provider value={{ size: '1.5rem' }}>
+
+      <ThemeColor>
         <RouterProvider router={ router } />
-      </IconContext.Provider>
+
+        <Toaster />
+        
+      </ThemeColor>
+
     </Provider>
   </>,
 )

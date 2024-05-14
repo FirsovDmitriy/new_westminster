@@ -1,0 +1,68 @@
+.selectMenus {
+  position: relative;
+  width: 100%;
+
+  &Field {
+    position: relative;
+  }
+}
+
+.selectMenusInput {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  width: 100%;
+  pointer-events: none;
+  padding: 0;
+  border: none;
+  opacity: 0;
+}
+
+.field {
+  justify-content: space-between;
+}
+
+.icon {
+  display: flex;
+}
+
+.list {
+  box-sizing: border-box;
+  background: var(--secondary-background-color);
+  border-radius: $radius;
+  transition: opacity $duration $easing;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+.option {
+  transition: background $duration $easing;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0.8rem 1.4rem 0.8rem 2.4rem;
+  cursor: pointer;
+  border-radius: $radius;
+  @media (any-hover: hover) {
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  &Icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-left: 0.375rem;
+  }
+}

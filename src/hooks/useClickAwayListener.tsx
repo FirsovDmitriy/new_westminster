@@ -24,11 +24,11 @@ export default function useClickAwayListener(nodeRef: RefObject<HTMLElement>, ha
     }
   }, [handleClickAway])
 
-  useEffect(() => {
-    document.addEventListener('touchend', handleClickAway)
+  // useEffect(() => {
+  //   document.addEventListener('touchend', handleClickAway)
 
-    return () => {
-      document.removeEventListener('touchend', handleClickAway)
-    }
-  }, [handleClickAway])
+  //   return () => {
+  //     document.removeEventListener('touchend', handleClickAway)
+  //   }
+  // }, [handleClickAway])
 }
