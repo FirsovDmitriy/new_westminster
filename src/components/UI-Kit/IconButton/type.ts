@@ -5,5 +5,5 @@ export type IconButtonProps = {
   className?: string
   children: ReactNode
   disabled?: boolean
-  type?: string
+  type?: "button" | "reset" | "submit"
 }

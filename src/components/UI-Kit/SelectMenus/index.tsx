@@ -70,8 +70,8 @@ const SelectMenus: React.FC<SelectMenusProps> = props => {
     }
 
     const nativeEvent = event?.nativeEvent || event
-    // const nativeEvent = Object.create(nativeEvent.prototype.constructor())
 
+    // @ts-ignore
     const clonedEvent = new nativeEvent.constructor(
       nativeEvent.type,
       nativeEvent

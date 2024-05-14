@@ -2,7 +2,7 @@ import { Goods } from "@/types/Goods"
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import type { RootState } from "@/store"
 
-interface GoodsCart extends Goods {
+export interface GoodsCart extends Goods {
   quantity: number
 }
 

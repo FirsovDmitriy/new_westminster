@@ -7,6 +7,7 @@ type AppLinkProps = {
   href: string
   className?: string
   activeClass?: string
+  onClick?: () => void
 }
 
 const AppLink = (props: AppLinkProps) => {

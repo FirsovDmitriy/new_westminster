@@ -12,7 +12,6 @@ const QuantityInput = (props: QuantityProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value)
-    onCount(value)
   }
 
   const dispatch = useAppDispatch()

@@ -40,7 +40,7 @@ const CatalogPage = () => {
           <div className={styled.priceSort}>
             <p className={styled.priceSortLabel}>Sort by</p>
             <SelectMenus
-              placeholder='Featured'
+              placeholder='Select...'
               value={priceSort}
               onChange={handleChange}
               options={[

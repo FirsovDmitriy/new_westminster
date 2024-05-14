@@ -8,6 +8,6 @@ type items = {
 
 export interface TabbarProps {
   value: number
-  onChange: (event: React.SyntheticEvent, value: number) => void
-  items: items
+  onChange: (event: React.SyntheticEvent, value?: number) => void
+  items?: items
 }

@@ -1,6 +1,6 @@
 import React from "react"
 
-export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   value: boolean
   className?: string

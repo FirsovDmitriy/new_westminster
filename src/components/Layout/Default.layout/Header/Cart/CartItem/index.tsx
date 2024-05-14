@@ -4,7 +4,7 @@ import IconButton from '@/components/UI-Kit/IconButton'
 import Quantity from '@/components/QuantityInput'
 import { Goods } from '@/types/Goods'
 import useAppDispatch from '@/hooks/useAppDispatch'
-import { removeGoods } from '@/store/slices/cart.slice'
+import { GoodsCart, removeGoods } from '@/store/slices/cart.slice'
 import { priceFormation } from '@/utils'
 
 interface CartItemProps {
@@ -47,7 +47,7 @@ const CartItem = ({ item }: CartItemProps) => {
         <div className={styled.actions}>
           
           <Quantity
-            item={item}
+            item={item as GoodsCart}
           />
 
           <IconButton onClick={remove}>

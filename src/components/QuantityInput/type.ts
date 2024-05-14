@@ -1,5 +1,5 @@
-import { Goods } from "@/types/Goods"
+import { GoodsCart } from "@/store/slices/cart.slice"
 
 export type QuantityProps = {
-  item: Goods
+  item: GoodsCart
 }
