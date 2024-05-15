@@ -59,22 +59,27 @@ const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
 
   React.useEffect(() => {
     return () => {
-      if (user?.avatar) return
-      deleteProfileImage()
+      // deleteProfileImage()
     }
   }, [deleteProfileImage, user])
 
-  const handleSetProfileImage = async (event: React.SyntheticEvent) => {
+  const handleSetProfileImage = (event: React.SyntheticEvent) => {
     event.preventDefault()
     
-    try {
-      const resp = await profileUpdate({ id: user?.id, ...{ profileImage: imagePath } })
+    profileUpdate({
+      id: user?.id,
+      ...{ profileImage: imagePath }
+    })
+    .unwrap()
+    .then(resp => {
       dispatch(updateCredentials(resp))
-
-      // setShow(false)
-    } catch (error) {
-      console.log('Error...')
-    }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    .finally(() => {
+      setShow(false)
+    })
   }
 
   return (
@@ -113,7 +118,7 @@ const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
                 src={imagePath}
                 width="288"
                 height="288"
-                alt=""
+                alt="Preview profile image"
               />
             </div>
 
@@ -122,7 +127,8 @@ const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
                 <Button
                   variant="outlined"
                   type="submit"
-                  className={styled.previewButton}>
+                  className={styled.previewButton}
+                >
                   Set profile image
                 </Button>
               </div>

@@ -1,13 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "..";
-
-type User = {
-  name: string
-  lastName: string
-  email: string
-  avatar: string
-  id: number
-}
+import { User } from "@/types/User";
 
 interface Credentials {
   token: string | null

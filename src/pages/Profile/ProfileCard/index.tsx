@@ -33,7 +33,7 @@ const ProfileCard = () => {
   const [profileUpdate] = useProfileUpdateMutation()
 
   const deleteProfileImage = async () => {
-    const key = user?.avatar.split('storage/v1/object/public/avatars/')[1]
+    const key = user?.profileImage.split('storage/v1/object/public/avatars/')[1]
 
     if(typeof(key) !== 'string') return
     
@@ -55,7 +55,7 @@ const ProfileCard = () => {
           <div className={styled.avatar}>
             <div className={styled.imageWrapper}>
               <Image
-                src={user?.avatar ? user.avatar : mock}
+                src={user?.profileImage ? user.profileImage : mock}
               />
             </div>
 
@@ -74,7 +74,7 @@ const ProfileCard = () => {
                     <UploadProfileImage className={styled.item} />
                   </Dropdowns.Item>
 
-                 {user?.avatar && (
+                 {user?.profileImage && (
                    <Dropdowns.Item>
                     <button
                       className={cn(styled.item, 'base-button')}

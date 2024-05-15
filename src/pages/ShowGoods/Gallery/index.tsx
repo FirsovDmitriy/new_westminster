@@ -12,6 +12,7 @@ const Gallery = ({ images }: GalleryProps) => {
           src={image}
           className={styled.item}
           alt=""
+          key={image}
         />
       ))}
     </div>
