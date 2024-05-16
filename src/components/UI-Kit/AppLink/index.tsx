@@ -4,23 +4,23 @@ import cn from 'classnames'
 
 type AppLinkProps = {
   children: React.ReactNode
-  href: string
+  to: string
   className?: string
   activeClass?: string
   onClick?: () => void
 }
 
 const AppLink = (props: AppLinkProps) => {
-  const { children, className, href, activeClass, ...restProps } = props
+  const { children, className, activeClass, ...restProps } = props
 
   return (
     <NavLink
-      to={href}
       className={({ isActive }) =>
         cn(isActive ? activeClass : null, 'link', className)
       }
-      {...restProps}>
-      {children}
+      {...restProps}
+    >
+      { children }
     </NavLink>
   )
 }

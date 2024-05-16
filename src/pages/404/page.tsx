@@ -9,7 +9,7 @@ const Error404 = () => {
         <h1 className={styled.errorPage__title}>
           The page your`re looking for doesn`t exist
         </h1>
-        <AppLink href={routesPath.HOME}>
+        <AppLink to={routesPath.HOME}>
           To the homepage
         </AppLink>
       </section>

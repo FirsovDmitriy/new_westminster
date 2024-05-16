@@ -1,9 +1,8 @@
 import { ReactNode } from "react"
 
-export type IconButtonProps = {
-  onClick?: () => void
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
   children: ReactNode
-  disabled?: boolean
-  type?: "button" | "reset" | "submit"
+  // disabled?: boolean
+  // type?: "button" | "reset" | "submit"
 }

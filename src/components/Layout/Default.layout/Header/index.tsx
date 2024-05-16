@@ -17,7 +17,7 @@ const Header = () => {
     <header className={styled.header}>
       <Container className={styled.content}>
         <div>
-          <AppLink href={routesPath.HOME}>
+          <AppLink to={routesPath.HOME}>
             <Typography tag="h1" className={styled.logoText}>
               New Westminster
             </Typography>
@@ -27,7 +27,7 @@ const Header = () => {
         
         <div className={styled.actions}>
           <Search />
-          <AppLink href={routesPath.PROFILE} className={styled.account}>
+          <AppLink to={routesPath.PROFILE} className={styled.account}>
             <UserRound />
           </AppLink>
           <Cart />

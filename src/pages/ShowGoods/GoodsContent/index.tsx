@@ -5,7 +5,7 @@ import { MoveLeftIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import useAppDispatch from '@/hooks/useAppDispatch'
 import { getCart, putGoods } from '@/store/slices/cart.slice'
-import useAppSelector from '@/hooks/useAppSelector'
+import useAppSelector from '@/hooks/useTypedSelector'
 import { inCart, priceFormation } from '@/utils'
 
 interface GoodsContentProps {

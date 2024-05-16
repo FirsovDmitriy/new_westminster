@@ -18,14 +18,11 @@ interface SearchFormProps {
 
 export type Ref = HTMLDivElement
 
-const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ show, onClose }, ref) {
+const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ onClose }, ref) {
   const [searchQuery, setSearchQuery] = React.useState<string>('')
-
-  useLock()
-
   const value = useDebounce(searchQuery, 800)
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
 
@@ -36,8 +33,12 @@ const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ 
   }
 
   React.useEffect(() => {
-    if (!show) setSearchQuery('')
-  }, [show])
+    return () => {
+      setSearchQuery('')
+    }
+  }, [])
+
+  useLock()
 
   return (
     <div className={cn(styled.form)} ref={ref}>
@@ -65,7 +66,7 @@ const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ 
             </IconButton>
           </div>
           <IconButton onClick={() => onClose(false)}>
-            <X />
+            <X size={32} />
           </IconButton>
         </form>
 
@@ -79,7 +80,11 @@ const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ 
               return <h3 className={styled.noResults}>Nothing found</h3>
             } else {
               return data?.map((card: Goods) => (
-                <SearchFormCard onClose={onClose} item={card} key={card.id} />
+                <SearchFormCard
+                  onClose={onClose}
+                  item={card}
+                  key={card.id}
+                />
               ))
             }
           })()}

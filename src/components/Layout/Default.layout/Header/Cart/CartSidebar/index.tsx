@@ -4,7 +4,7 @@ import CartItem from '../CartItem'
 import IconButton from '@/components/UI-Kit/IconButton'
 import useLock from '@/hooks/useLock'
 import styled from './styled.module.scss'
-import useAppSelector from '@/hooks/useAppSelector'
+import useAppSelector from '@/hooks/useTypedSelector'
 import { getCart } from '@/store/slices/cart.slice'
 
 interface CartSidebarProps {

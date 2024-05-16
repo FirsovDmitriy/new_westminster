@@ -35,11 +35,16 @@ export const slice = createSlice({
       state.data = null
       state.token = null
     }
+  },
+
+  selectors: {
+    getUser: state => state.data
   }
 })
 
 export const { setCredentials, loggedOut, updateCredentials } = slice.actions
 export default slice.reducer
+export const { getUser } = slice.selectors
 
 export const selectCurrentUser = (state: RootState) => state.auth.data
 export const selectCurrentToken = (state: RootState) => state.auth.token

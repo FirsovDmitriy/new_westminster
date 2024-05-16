@@ -14,7 +14,7 @@ const SearchFormCard = ({ item, onClose }: SearchFormCardProps) => {
 
   return (
     <article className={styled.card} onClick={() => onClose(false)}>
-      <AppLink href={`/goods/${ item.id }`} className={styled.link}>
+      <AppLink to={`/goods/${ item.id }`} className={styled.link}>
         <div className={styled.imageWrapper}>
           <img src={item.previewImage} width={100} height={100} alt="" />
         </div>

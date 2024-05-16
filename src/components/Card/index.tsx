@@ -6,18 +6,19 @@ import IconButton from '../UI-Kit/IconButton'
 import { Goods } from '@/types/Goods'
 import useAppDispatch from '@/hooks/useAppDispatch'
 import { getCart, putGoods } from '@/store/slices/cart.slice'
-import useAppSelector from '@/hooks/useAppSelector'
+import useTypedSelector from '@/hooks/useTypedSelector'
 import { inCart } from '@/utils'
 import { priceFormation } from '@/utils'
 
-type CardProps = { item: Goods }
+interface CardProps { item: Goods }
 
 const Card = (props: CardProps) => {
   const { item } = props
   const dispatch = useAppDispatch()
-  const cart = useAppSelector(getCart)
+  const cart = useTypedSelector(getCart)
 
-  const addToCart = () => {
+  const handlePutGoods = (event: React.SyntheticEvent) => {
+    event.stopPropagation()
     dispatch(putGoods(item))
   }
 
@@ -26,7 +27,7 @@ const Card = (props: CardProps) => {
 
   return (
     <article className={styled.card}>
-      <AppLink href={`/goods/${item.id}`}>
+      <AppLink to={`/goods/${item.id}`}>
         <div className={styled.imageWrapper}>
           <Image
             src={item?.previewImage}
@@ -47,7 +48,7 @@ const Card = (props: CardProps) => {
             ? <span className={styled.inCart}>
                <ShoppingBagIcon /> In Cart
               </span>
-            : <IconButton onClick={addToCart}>
+            : <IconButton onClick={handlePutGoods}>
                 <ShoppingBagIcon />
               </IconButton>}
         </div>

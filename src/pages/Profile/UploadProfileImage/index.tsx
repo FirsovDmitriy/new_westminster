@@ -1,19 +1,13 @@
 import React from 'react'
 import styled from './styled.module.scss'
-import Popup from '@/components/UI-Kit/Popup'
-import useAppSelector from '@/hooks/useAppSelector'
-import { selectCurrentUser, updateCredentials } from '@/store/slices/auth.slice'
-import useAppDispatch from '@/hooks/useAppDispatch'
+import useTypedSelector from '@/hooks/useTypedSelector'
+import { selectCurrentUser } from '@/store/slices/auth.slice'
 import cn from 'classnames'
-import Button from '@/components/UI-Kit/Button'
-import IconButton from '@/components/UI-Kit/IconButton'
-import { X } from 'lucide-react'
 import Preloader from '@/components/UI-Kit/Preloader'
 import {
-  useDeleteFileMutation,
-  useUploadFileMutation,
-  useProfileUpdateMutation,
+  useUploadFileMutation
 } from '@/store/api/endpoints/user.endoint'
+import Dialog from './dialog'
 
 interface UploadProfileImageProps {
   className?: string
@@ -21,17 +15,10 @@ interface UploadProfileImageProps {
 
 const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
   const [show, setShow] = React.useState(true)
-  const [imagePath, setImagePath] = React.useState<string | ''>('')
-
-  const dispatch = useAppDispatch()
-
-  const user = useAppSelector(selectCurrentUser)
+  const [imageUrl, setImageUrl] = React.useState<string | ''>('')
+  const user = useTypedSelector(selectCurrentUser)
 
   const [uploadFile, { isLoading, isSuccess }] = useUploadFileMutation()
-
-  const [profileUpdate, { isLoading: isUpdating }] = useProfileUpdateMutation()
-
-  const [deleteFile] = useDeleteFileMutation()
 
   const handlePreloadImage = async ({
     target: { files },
@@ -43,49 +30,21 @@ const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
     const name = `${user?.id}/${file.name}`
 
     try {
-      const resp = await uploadFile({ name, file }).unwrap()
-      if (typeof resp === 'string') {
-        setImagePath(resp)
+      const response = await uploadFile({ name, file }).unwrap()
+      if (typeof response === 'string') {
+        setImageUrl(response)
       }
     } catch (error) {
-      console.log('Error', error)
-    }
-  }
-
-  const deleteProfileImage = React.useCallback(async () => {
-    const key = imagePath.split('storage/v1/object/public/avatars/')[1]
-    await deleteFile(key).unwrap()
-  }, [imagePath, deleteFile])
-
-  React.useEffect(() => {
-    return () => {
-      // deleteProfileImage()
-    }
-  }, [deleteProfileImage, user])
-
-  const handleSetProfileImage = (event: React.SyntheticEvent) => {
-    event.preventDefault()
-    
-    profileUpdate({
-      id: user?.id,
-      ...{ profileImage: imagePath }
-    })
-    .unwrap()
-    .then(resp => {
-      dispatch(updateCredentials(resp))
-    })
-    .catch(error => {
       console.log(error)
-    })
-    .finally(() => {
-      setShow(false)
-    })
+    }
   }
 
   return (
     <React.Fragment>
       <label className={cn(className, styled.uploadAvatar)}>
-        <span>Upload a picture</span>
+        <span>
+          Upload a picture
+        </span>
         <input
           onChange={handlePreloadImage}
           type="file"
@@ -93,51 +52,14 @@ const UploadProfileImage = ({ className }: UploadProfileImageProps) => {
           accept="image/*"
         />
       </label>
-
       {isSuccess && (
-        <Popup
-          onClose={() => setShow(false)}
+        <Dialog
+          imageUrl={imageUrl}
           show={show}
-          className={styled.preview}>
-          <div className={styled.previewHeader}>
-            <h3 className={styled.previewTitle}>Preview</h3>
-            <IconButton
-              className={styled.previewClose}
-              onClick={() => setShow(false)}
-              type="button">
-              <X />
-            </IconButton>
-          </div>
-          <form
-            className={styled.previewForm}
-            action="#"
-            onSubmit={handleSetProfileImage}>
-            <div className={styled.previewWrapperImage}>
-              <img
-                className={styled.previewImage}
-                src={imagePath}
-                width="288"
-                height="288"
-                alt="Preview profile image"
-              />
-            </div>
-
-            <div className={styled.previewFooter}>
-              <div>
-                <Button
-                  variant="outlined"
-                  type="submit"
-                  className={styled.previewButton}
-                >
-                  Set profile image
-                </Button>
-              </div>
-            </div>
-          </form>
-        </Popup>
+          onClose={setShow}
+        />
       )}
       {isLoading && <Preloader />}
-      {isUpdating && <Preloader />}
     </React.Fragment>
   )
 }

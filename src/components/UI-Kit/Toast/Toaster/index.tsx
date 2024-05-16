@@ -1,5 +1,5 @@
 import Portal from '@/components/Portal'
-import useAppSelector from '@/hooks/useAppSelector'
+import useAppSelector from '@/hooks/useTypedSelector'
 import { selectToasts } from '../toast.slice'
 import Toast from '..'
 

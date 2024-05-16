@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import routesPath from '@/router/routesPath'
-import useAppSelector from '@/hooks/useAppSelector'
+import useAppSelector from '@/hooks/useTypedSelector'
 import { selectCurrentToken } from '@/store/slices/auth.slice'
 
 const RequiredAuth: React.FC = () => {

@@ -6,6 +6,6 @@ COPY pnpm-lock.yaml .
 RUN pnpm install
 COPY . .
 RUN pnpm run build
-RUN pnpm add -g serve
+
 EXPOSE 5000
 CMD ["serve", "-s", "build", "-l", "5000"]

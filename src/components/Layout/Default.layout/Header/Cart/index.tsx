@@ -6,7 +6,7 @@ import AppCSSTransition from '../../../../AppCSSTransition'
 import { ShoppingCartIcon } from 'lucide-react'
 import IconButton from '@/components/UI-Kit/IconButton'
 import Backdrop from '@/components/UI-Kit/Backdrop'
-import useAppSelector from '@/hooks/useAppSelector'
+import useAppSelector from '@/hooks/useTypedSelector'
 import { getCart } from '@/store/slices/cart.slice'
 import CartSidebar from './CartSidebar'
 

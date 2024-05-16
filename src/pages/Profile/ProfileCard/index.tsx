@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from './styled.module.scss'
 import Dropdowns from '@/components/UI-Kit/Dropdowns'
-import useAppSelector from '@/hooks/useAppSelector'
+import useTypedSelector from '@/hooks/useTypedSelector'
 import {
   loggedOut,
   selectCurrentUser,
@@ -23,7 +23,7 @@ const ProfileCard = () => {
 
   const dispatch = useAppDispatch()
 
-  const user = useAppSelector(selectCurrentUser)
+  const user = useTypedSelector(selectCurrentUser)
 
   function handleLoggedOut() {
     dispatch(loggedOut())
@@ -90,13 +90,13 @@ const ProfileCard = () => {
           </div>
 
           <h3>
-            {`Hi ${user?.name ?? 'Unknown Raccoon'}`}
+            {`Hi ${user?.fullName ?? 'Unknown Raccoon'}`}
           </h3>
 
           <p>{ user?.email }</p>
 
           <AppLink
-            href={routesPath.EDIT_PROFILE}
+            to={routesPath.EDIT_PROFILE}
             className={cn(styled.link)}
           >
             Edit your profile

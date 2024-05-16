@@ -161,13 +161,13 @@ const FormAuth = () => {
               {isLogin
                 ? <span className={styled.footerText}>
                     <p>Don't have an account yet?</p>
-                    <AppLink href={routesPath.REGISTRATION}>
+                    <AppLink to={routesPath.REGISTRATION}>
                       Register now
                     </AppLink>
                   </span>
                 : <span className={styled.footerText}>
                     <p>Already have an account?</p>
-                    <AppLink href={routesPath.SIGN_IN}>
+                    <AppLink to={routesPath.SIGN_IN}>
                       Sign in
                     </AppLink>
                   </span>}

@@ -2,16 +2,16 @@ import React from 'react'
 import styled from './styled.module.scss'
 import Input from '@/components/UI-Kit/Input'
 import Button from '@/components/UI-Kit/Button'
-import useAppSelector from '@/hooks/useAppSelector'
-import { selectCurrentUser, updateCredentials } from '@/store/slices/auth.slice'
+import useTypedSelector from '@/hooks/useTypedSelector'
+import { getUser, selectCurrentUser, updateCredentials } from '@/store/slices/auth.slice'
 import useAppDispatch from '@/hooks/useAppDispatch'
 import Preloader from '@/components/UI-Kit/Preloader'
 import { useProfileUpdateMutation } from '@/store/api/endpoints/user.endoint'
 
 const General = () => {
-  const { id, name, email } = useAppSelector(selectCurrentUser)
+  const { id, fullName, email } = useTypedSelector(getUser)
   const dispatch = useAppDispatch()
-  const initialValues = { name: name ?? '', email: email ?? '' }
+  const initialValues = { fullName: fullName ?? '', email: email ?? '' }
   const [values, setValues] = React.useState(initialValues)
 
   const [profileUpdate, { isLoading }] = useProfileUpdateMutation()
@@ -20,7 +20,6 @@ const General = () => {
     event.preventDefault()
 
     const resp = await profileUpdate({ id, ...values }).unwrap()
-    console.log('Resp', resp)
     dispatch(updateCredentials(resp))
   }
 
@@ -49,11 +48,11 @@ const General = () => {
                 Full name
               </label>
               <Input
-                value={values.name}
+                value={values.fullName}
                 placeholder="Full Name"
                 className={styled.textField}
                 onChange={handleChange}
-                name="name"
+                name="fullName"
                 type="text"
               />
             </div>

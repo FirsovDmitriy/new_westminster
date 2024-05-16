@@ -1,6 +1,6 @@
 import React from 'react'
 import { selectmMode } from '@/store/slices/colorScheme.slice'
-import useAppSelector from '@/hooks/useAppSelector'
+import useAppSelector from '@/hooks/useTypedSelector'
 
 type ThemeColorProps = {
   children: React.ReactNode
