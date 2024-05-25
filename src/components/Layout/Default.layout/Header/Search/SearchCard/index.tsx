@@ -3,12 +3,12 @@ import { Goods } from '@/types/Goods'
 import AppLink from '@/components/UI-Kit/AppLink'
 import { priceFormation } from '@/utils'
 
-interface SearchFormCardProps {
+interface SearchCardProps {
   item: Goods
   onClose: (arg: boolean) => void
 }
 
-const SearchFormCard = ({ item, onClose }: SearchFormCardProps) => {
+const SearchCard = ({ item, onClose }: SearchCardProps) => {
 
   const formattedPrice = priceFormation(item?.price)
 
@@ -31,4 +31,4 @@ const SearchFormCard = ({ item, onClose }: SearchFormCardProps) => {
   )
 }
 
-export default SearchFormCard
+export default SearchCard

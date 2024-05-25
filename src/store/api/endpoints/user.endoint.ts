@@ -1,16 +1,14 @@
 import supabase from '@/supabaseClient'
 import { api } from '..'
-import { reducerPaths } from '@/store/reducerPaths'
-import { User } from '@/types/User'
 
 const STORAGE_URL =
   'https://pbdiaentiohjckbhjqml.supabase.co/storage/v1/object/public/avatars/'
 
 const userApi = api.injectEndpoints({
   endpoints: builder => ({
-    registration: builder.mutation<User, any>({
+    registration: builder.mutation({
       query: arg => ({
-        url: reducerPaths.register,
+        url: '/register',
         method: 'POST',
         body: arg,
       }),

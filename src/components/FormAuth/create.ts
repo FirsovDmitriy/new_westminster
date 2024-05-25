@@ -1,11 +1,22 @@
+import React from "react"
+import { isFunc } from "./utils"
 
-interface Result {
-  $invalid?: boolean
-}
+export default function create(rule:any, value:string, validators:any) {
+  const [$invalid, setInvalid] = React.useState(false)
+  console.log('validators', validators)
+  const $params = validators?.$params || {}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function create(rules: any) {
-  const rulesKeys = Object.keys(rules)
+  React.useEffect(() => {
+    setInvalid(validators.$validator(value))
+  }, [value])
 
-  const result: Result = {}
+  const message = validators.$message
+  const $message = isFunc(message)
+    ? message($params)
+    : message
+
+  return {
+    $message,
+    $invalid
+  }
 }

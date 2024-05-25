@@ -8,11 +8,11 @@ import ShowGoods from '@/pages/ShowGoods'
 import ProfilePage from '@/pages/Profile'
 import AuthLayout from '@/components/Layout/Auth.layout'
 import RequiredAuth from '@/hoc/RequiredAuth'
-// import Preloader from '@/components/UI-Kit/Preloader'
 import EditProfile from '@/pages/EditProfile'
 import SignIn from '@/pages/SignIn'
 import Registration from '@/pages/Registration'
 import ErrorRouteElement from '@/components/ErrorRouteElement'
+import CheckoutPage from '@/pages/Checkout'
 
 const AppRouter: RouteObject[] = [
   {
@@ -47,6 +47,12 @@ const AppRouter: RouteObject[] = [
               </React.Suspense>
             ),
           },
+          {
+            path: routesPath.CHECKOUT,
+            element: <React.Suspense>
+              <CheckoutPage />
+            </React.Suspense>
+          }
         ],
       },
       {

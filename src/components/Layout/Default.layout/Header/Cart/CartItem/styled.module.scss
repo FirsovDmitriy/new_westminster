@@ -1,45 +1,39 @@
-.item {
+.Card {
   width: 100%;
   display: flex;
   gap: 1.6rem;
   border-bottom: 1px solid var(--line-color);
-  padding: 0 0 1.25rem 0;
+  padding: 0 0 1rem 0;
 }
 
-.wrapperImage {
+.Card__ImgWrapper {
   flex: 1 0 auto;
   border-radius: 6px;
   overflow: hidden;
   display: flex;
 }
 
-.wrapperContent {
+.Card__ContentWrapper {
   width: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: start;
+}
+
+.Card__Row {
   display: flex;
   justify-content: space-between;
 }
 
-.col {
+.Card__Icon {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  align-items: flex-start;
-}
-
-.actions {
-  display: flex;
-  align-items: flex-start;
-  gap: 2.2rem;
+  justify-content: flex-end;
 }
 
 @media (max-width: 576px) {
-  .wrapperContent {
+  .Card__Row {
     flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .actions {
-    flex-direction: column;
-    gap: 0.8rem;
+    align-items: flex-start;
+    gap: 0.4rem;
   }
 }

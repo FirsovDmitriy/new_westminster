@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from './styled.module.scss'
-import Input from '../../components/UI-Kit/Input'
-import Button from '../../components/UI-Kit/Button'
-// import cn from 'classnames'
+import Input from '@/components/UI-Kit/Input'
+import Button from '@/components/UI-Kit/Button'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../store/slices/auth.slice'
@@ -11,172 +10,189 @@ import Preloader from '@/components/UI-Kit/Preloader'
 import routesPath from '@/router/routesPath'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import AppLink from '../UI-Kit/AppLink'
-import { useToast } from '../UI-Kit/Toast/useToast'
-import { useRegistrationMutation, useLoginMutation } from '@/store/api/endpoints/user.endoint'
-// import useValidation from './hooks/useValidation'
+import { useToast } from '@/components/UI-Kit/Toast/useToast'
+import {
+  useRegistrationMutation,
+  useLoginMutation,
+} from '@/store/api/endpoints/user.endoint'
+import useValidation from './hooks/useValidation'
+import required from './validators/withText/required'
+import email from './validators/withText/email'
+import minLength from './validators/withText/minLength'
 
 const FormAuth = () => {
   const location = useLocation()
   const isLogin = location.pathname === routesPath.SIGN_IN
+  const [formValues, setFormValues] = React.useState({
+    email: '',
+    password: '',
+  })
 
-  const [email, setEmail]  = React.useState('')
-  const [password, setPassword]  = React.useState('')
+  const { $touch, $invalid, $errors } = useValidation(formValues.email, {
+    required,
+    email,
+  })
 
-  // ***
-  // let test = useValidation()
+  const valid = useValidation(formValues.password, {
+    required,
+    minLength: minLength(4),
+  })
 
   const toast = useToast()
 
-
-  const [fieldType, setFieldType] = React.useState<'password' | 'text'>('password')
+  const [fieldType, setFieldType] = React.useState<'password' | 'text'>(
+    'password'
+  )
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const fromPage = location.state?.from?.pathname
 
+  const handleChange = ({
+    target: { value, name },
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setFormValues(prev => ({ ...prev, [name]: value }))
+  }
+
   const [registration] = useRegistrationMutation()
-  
+
   const [login, { isLoading }] = useLoginMutation()
-  
+
   async function onRegistration() {
     try {
       const data = await registration({
         fullName: '',
-        email,
-        password,
+        email: formValues.email,
+        password: formValues.password,
         profileImage: null,
       }).unwrap()
 
       dispatch(setCredentials(data))
       navigate(fromPage, { replace: true })
-
     } catch (error) {
-      console.log('Error register', error)
       toast?.show({
         title: 'User already exists',
-        status: 'error'
+        status: 'error',
       })
     }
   }
 
-  async function  onLogin() {
+  async function onLogin() {
     try {
       const data = await login({
-        email,
-        password
+        email: formValues.email,
+        password: formValues.password,
       }).unwrap()
 
       dispatch(setCredentials(data))
       navigate(fromPage, { replace: true })
       navigate('/')
-
     } catch (error) {
-      console.log('Error sign in', error)
       toast.show({
         title: 'Invalid login or password.',
-        status: 'error'
+        status: 'error',
       })
     }
   }
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
-
-    isLogin
-      ? onLogin()
-      : onRegistration()
+    isLogin ? onLogin() : onRegistration()
   }
 
   return (
     <React.Fragment>
-      { isLoading && <Preloader /> }
+      {isLoading && <Preloader />}
       <React.Fragment>
-        <form
-          onSubmit={handleSubmit}
-          action="#"
-          className={styled.form}
-        >
-          <div className={styled.formWrapper}>
-
-            <div className={styled.formRow}>
-              <label htmlFor="email" className={styled.label}>
+        <form onSubmit={handleSubmit} action="#" className={styled.Form}>
+          <div className={styled.Form__wrapper}>
+            <div className={styled.FormRow}>
+              <label htmlFor="email" className={styled.FormRow__label}>
                 Email
               </label>
               <Input
-                value={email}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setEmail(event.target.value)
-                }}
-                name='email'
-                placeholder='Example, you@example.com'
-                type='email'
-                autoComplete='username'
-                id='email'
-                aria-required='true'
+                value={formValues.email}
+                onChange={handleChange}
+                name="email"
+                placeholder="Example, you@example.com"
+                type="email"
+                autoComplete="username"
+                id="email"
+                aria-required="true"
+                onBlur={$touch}
+                aria-invalid={$invalid}
               />
+              <ul className={styled.FormRow__invalidFeedback}>
+                {$errors.map(error => (
+                  <li key={error.$id}>
+                    { error.$message }
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className={styled.formRow}>
-              <label className={styled.label} htmlFor="password">
+            <div className={styled.FormRow}>
+              <label className={styled.FormRow__label} htmlFor="password">
                 Password
               </label>
-              <div className={styled.inputWrapper}>
+              <div className={styled.FormRow__fieldWrapper}>
                 <Input
-                  value={password}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setPassword(event.target.value)
-                  }}
-                  name='password'
-                  placeholder='Choose a password'
+                  value={formValues.password}
+                  onChange={handleChange}
+                  name="password"
+                  placeholder="Choose a password"
                   type={fieldType}
                   autoComplete={isLogin ? 'current-password' : 'new-password'}
-                  aria-required='true'
-                  id='password'
+                  aria-required="true"
+                  id="password"
+                  aria-invalid={valid.$invalid}
+                  onBlur={valid.$touch}
                 />
                 <IconButton
-                  className={styled.toggleButton}
+                  className={styled.FormRow__switch}
                   aria-label="Show password"
-                  onClick={() => setFieldType(prev => (
-                    prev === 'password' ? 'text' : 'password'
-                  ))}
-                  type='button'
-                >
-                  {fieldType === 'password' ? (
-                    <EyeOffIcon />
-                  ) : (
-                    <EyeIcon />
-                  )}
+                  onClick={() =>
+                    setFieldType(prev =>
+                      prev === 'password' ? 'text' : 'password'
+                    )
+                  }
+                  type="button">
+                  {fieldType === 'password' ? <EyeOffIcon /> : <EyeIcon />}
                 </IconButton>
               </div>
+              <ul className={styled.FormRow__invalidFeedback}>
+                {valid.$errors.map(error => (
+                  <li key={error.$id}>
+                    { error.$message }
+                  </li>
+                ))}
+              </ul>
             </div>
 
-
-            <div className={styled.footer}>
-              <Button
-                className={styled.submitButton}
-                type='submit'
-              >
+            <div className={styled.FormFooter}>
+              <Button className={styled.FormFooter__Button} type="submit">
                 {isLogin ? 'sign in' : 'registration'}
               </Button>
-              {isLogin
-                ? <span className={styled.footerText}>
-                    <p>Don't have an account yet?</p>
-                    <AppLink to={routesPath.REGISTRATION}>
-                      Register now
-                    </AppLink>
-                  </span>
-                : <span className={styled.footerText}>
-                    <p>Already have an account?</p>
-                    <AppLink to={routesPath.SIGN_IN}>
-                      Sign in
-                    </AppLink>
-                  </span>}
-              
-
-              
+              {isLogin ? (
+                <span className={styled.FormFooter__Text}>
+                  <p>Don't have an account yet?</p>
+                  <AppLink
+                    className={styled.FormFooter__Link}
+                    to={routesPath.REGISTRATION}>
+                    Register now
+                  </AppLink>
+                </span>
+              ) : (
+                <span className={styled.FormFooter__Text}>
+                  <p>Already have an account?</p>
+                  <AppLink
+                    className={styled.FormFooter__Link}
+                    to={routesPath.SIGN_IN}>
+                    Sign in
+                  </AppLink>
+                </span>
+              )}
             </div>
-
-
           </div>
         </form>
       </React.Fragment>

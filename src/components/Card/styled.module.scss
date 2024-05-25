@@ -1,4 +1,4 @@
-.card {
+.Card {
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -12,16 +12,15 @@
   }
 }
 
-.imageWrapper {
+.Card__ImgWrapper {
   position: relative;
   height: 0;
   padding-top: 100%;
   overflow: hidden;
   border-radius: $radius;
-  margin: 0 0 1.5rem 0;
 }
 
-.img {
+.Card__Image {
   display: flex;
   position: absolute;
   inset: -50%;
@@ -29,16 +28,16 @@
   object-fit: cover;
 }
 
-.marker {
+.Card__Marker {
   position: absolute;
   bottom: 0.625rem;
   left: 0.625rem;
   background: var(--secondary-background-color);
-  padding: 0.5rem 1.3rem 0.6rem;
+  padding: 0.9rem;
   border-radius: 4rem;
 }
 
-.contentWrapper {
+.Card__ContentWrapper {
   flex: auto;
   display: flex;
   flex-direction: column;
@@ -46,23 +45,25 @@
   align-items: flex-start;
 }
 
-.cardTitle {
+.Card__Row {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.Card__Title {
   flex: auto;
 }
 
-.price {
+.Card__Price {
   color: var(--accent-color);
 }
 
-.inCart {
-  display: flex;
-  gap: 0.4rem;
+.Card__Button {
+  border-radius: 9999px;
+  width: 3rem;
+  height: 3rem;
+  background: var(--secondary-background-color);
+  color: var(--text-color);
 }
-
-@media (hover: none) {
-  .action {
-    display: none;
-  }
-}
-
-@media (max-width: 1200px) {}

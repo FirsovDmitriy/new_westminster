@@ -29,11 +29,11 @@
 
   &_contained {
     background: var(--text-color);
-    color: var(--secondary-text-color);
+    color: var(--background-color);
     @media (any-hover: hover) {
       &:hover {
         background: var(--background-color);
-        // color: var(--text-color);
+        color: var(--text-color);
       }
     }
   }
@@ -56,7 +56,7 @@
     border: none;
     @media (any-hover: hover) {
       &:hover {
-        background: rgba(255, 255, 255, 0.08);
+        background: var(--secondary-background-color);
       }
     }
     &:disabled {

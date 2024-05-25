@@ -31,7 +31,7 @@ const Nav = ({ className, show, onClose }: NavProps) => {
           to={routesPath.PROFILE}
           className={styled.accountLink}>
           <User />
-          Log in
+          Account
         </AppLink>
       </div>
     </nav>

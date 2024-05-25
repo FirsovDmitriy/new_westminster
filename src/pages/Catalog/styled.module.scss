@@ -1,39 +1,39 @@
-.section {}
+.Catalog {}
 
-.filterRow {
-  padding: 0 0 1.5rem 0;
+.Catalog__Container {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 1.5rem;
+  height: 100%;
 }
 
-.priceSort {
+.Catalog__Row {}
+
+.PriceSort {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
 }
 
-.priceSortLabel {
+.PriceSort__Label {
   flex-shrink: 0;
 }
 
-.pagination {
-  margin-top: auto;
-  padding-top: 2.85rem;
+.Catalog__Showcase {}
+
+.Pagination {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 1.5rem;
-  width: 100%;
 }
 
-.paginationActions {
+.Pagination__Arrows {
   display: flex;
   gap: 1rem;
 }
 
-.paginationInfo {
+.Pagination__Meta {
   display: flex;
   gap: 0.875rem;
-}
-
-.text {
-  display: flex;
 }

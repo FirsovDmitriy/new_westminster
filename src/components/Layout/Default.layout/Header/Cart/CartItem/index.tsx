@@ -1,7 +1,7 @@
 import styled from './styled.module.scss'
-import { X } from "lucide-react"
+import { Trash2Icon } from 'lucide-react'
 import IconButton from '@/components/UI-Kit/IconButton'
-import Quantity from '@/components/QuantityInput'
+import Counter from '@/components/Counter'
 import { Goods } from '@/types/Goods'
 import useAppDispatch from '@/hooks/useAppDispatch'
 import { GoodsCart, removeGoods } from '@/store/slices/cart.slice'
@@ -13,49 +13,33 @@ interface CartItemProps {
 
 const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useAppDispatch()
-
   const remove = () => {
     dispatch(removeGoods(item.id))
   }
-
   const formated = priceFormation(item.price)
 
   return (
-    <div className={styled.item}>
-      <div className={styled.wrapperImage}>
-        <img
-          src={item?.previewImage}
-          className={styled.img}
-          alt=""
-          width="136"
-          height="136"
-        />
+    <div className={styled.Card}>
+      <div className={styled.Card__ImgWrapper}>
+        <img src={item?.previewImage} alt="" width="136" height="136" />
       </div>
 
-      <div className={styled.wrapperContent}>
-        <div className={styled.col}>
-          <h3>
-            { item?.name }
-          </h3>
+      <div className={styled.Card__ContentWrapper}>
+        <div className={styled.Card__Row}>
+          <span>
+            <h3>{item?.name}</h3>
 
-          <p>
-            { formated }
-          </p>
+            <p>{formated}</p>
+          </span>
+          <Counter item={item as GoodsCart} />
         </div>
 
-        
-        <div className={styled.actions}>
-          
-          <Quantity
-            item={item as GoodsCart}
-          />
-
+        <div className={styled.Card__Icon}>
           <IconButton onClick={remove}>
-            <X size={20}/>
+            <Trash2Icon size={20} />
           </IconButton>
         </div>
       </div>
-
     </div>
   )
 }

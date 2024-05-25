@@ -1,19 +1,22 @@
 import styled from './styled.module.scss'
 import AppLink from '@/components/UI-Kit/AppLink'
 import Image from '@/components/UI-Kit/Image'
-import { ShoppingBagIcon } from 'lucide-react'
-import IconButton from '../UI-Kit/IconButton'
 import { Goods } from '@/types/Goods'
 import useAppDispatch from '@/hooks/useAppDispatch'
-import { getCart, putGoods } from '@/store/slices/cart.slice'
+import {
+  getCart,
+  putGoods,
+} from '@/store/slices/cart.slice'
 import useTypedSelector from '@/hooks/useTypedSelector'
-import { inCart } from '@/utils'
 import { priceFormation } from '@/utils'
+import { Plus, ShoppingBag } from 'lucide-react'
+import IconButton from '@/components/UI-Kit/IconButton'
 
-interface CardProps { item: Goods }
+interface CardProps {
+  item: Goods
+}
 
-const Card = (props: CardProps) => {
-  const { item } = props
+const Card = ({ item }: CardProps) => {
   const dispatch = useAppDispatch()
   const cart = useTypedSelector(getCart)
 
@@ -22,37 +25,35 @@ const Card = (props: CardProps) => {
     dispatch(putGoods(item))
   }
 
-  const is = inCart(cart, item.id)
+  const inCart = cart.some(goods => goods.id === item.id)
   const formattedPrice = priceFormation(item?.price)
 
   return (
-    <article className={styled.card}>
+    <article className={styled.Card}>
       <AppLink to={`/goods/${item.id}`}>
-        <div className={styled.imageWrapper}>
-          <Image
-            src={item?.previewImage}
-            alt=""
-            className={styled.img}
-          />
-          {item.discount && <span className={styled.marker}>Sale</span>}
-        </div>
-        <div className={styled.contentWrapper}>
-          <h3 className={styled.cardTitle}>
-            { item?.name }
-          </h3>
-          <p className={styled.price}>
-            { formattedPrice } 
-          </p>
-
-          {is
-            ? <span className={styled.inCart}>
-               <ShoppingBagIcon /> In Cart
-              </span>
-            : <IconButton onClick={handlePutGoods}>
-                <ShoppingBagIcon />
-              </IconButton>}
+        <div className={styled.Card__ImgWrapper}>
+          <Image src={item?.previewImage} alt="" className={styled.Card__Image} />
+          {item.discount && <span className={styled.Card__Marker}>Sale</span>}
         </div>
       </AppLink>
+      <div className={styled.Card__ContentWrapper}>
+        <AppLink to={`/goods/${item.id}`}>
+          <h3 className={styled.Card__Title}>{item?.name}</h3>
+        </AppLink>
+        <div className={styled.Card__Row}>
+          <p className={styled.Card__Price}>{formattedPrice}</p>
+          <IconButton
+              onClick={handlePutGoods}
+              className={styled.Card__Button}
+              type="button"
+              disabled={inCart}
+            >
+              {inCart ? (
+                <ShoppingBag />
+              ) : <Plus />}
+            </IconButton>
+        </div>
+      </div>
     </article>
   )
 }

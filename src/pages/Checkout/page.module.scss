@@ -1,0 +1,30 @@
+.Checkout {}
+
+.Checkout__Wrapper {
+  --cols: 12;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.Checkout__Col {
+  grid-column: span 7;
+}
+
+.Checkout__Col2 {
+  grid-column: span 5;
+}
+
+@media (max-width: 992px) {
+  .Checkout__Wrapper {
+    --cols: 1;
+  }
+
+  .Checkout__Col {
+    grid-column: span 1;
+  }
+
+  .Checkout__Col2 {
+    grid-column: span 1;
+  }
+}

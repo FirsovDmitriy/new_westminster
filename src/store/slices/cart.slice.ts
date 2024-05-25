@@ -1,12 +1,14 @@
-import { Goods } from "@/types/Goods"
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import type { RootState } from "@/store"
+import { Goods } from '@/types/Goods'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import type { RootState } from '@/store'
 
 export interface GoodsCart extends Goods {
   quantity: number
 }
 
-const initialState: GoodsCart[] = []
+const localCart = localStorage.getItem('cart')
+
+const initialState: GoodsCart[] = localCart ? JSON.parse(localCart) : []
 
 export const slice = createSlice({
   name: 'cart',
@@ -15,37 +17,39 @@ export const slice = createSlice({
     putGoods: (state, action: PayloadAction<Goods>) => {
       state.push({
         ...action.payload,
-        quantity: 1
+        quantity: 1,
       })
     },
 
     removeGoods: (state, { payload }: PayloadAction<string>) => {
-      const index = state.findIndex(item => (
-        item.id === payload
-      ))
-      if(index !== -1) state.splice(index, 1)
+      const index = state.findIndex(item => item.id === payload)
+      if (index !== -1) state.splice(index, 1)
     },
 
     increment: (state, { payload }: PayloadAction<string>) => {
-      const goods = state.find(item => (
-        item.id === payload
-      ))
-      if(goods) goods.quantity++
+      const goods = state.find(item => item.id === payload)
+      if (goods) goods.quantity++
     },
 
     decrement: (state, { payload }: PayloadAction<string>) => {
-      const goods = state.find(item => (
-        item.id === payload
-      ))
-      if(goods) goods.quantity--
-    }
+      const goods = state.find(item => item.id === payload)
+      if (goods) goods.quantity--
+    },
+
+    control: (
+      state,
+      { payload }: PayloadAction<{ id: string; value: number }>
+    ) => {
+      const item = state.find(item => item.id === payload.id)
+      if (item) {
+        item.quantity = payload.value
+      }
+    },
   },
-  selectors: {
-    getCart: state => state
-  }
 })
 
-export const { putGoods, removeGoods, increment, decrement } = slice.actions
+export const { putGoods, removeGoods, increment, decrement, control } =
+  slice.actions
 
 export const getCart = (state: RootState) => state.cart
 

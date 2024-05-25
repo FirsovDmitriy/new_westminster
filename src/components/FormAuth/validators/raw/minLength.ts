@@ -1,3 +1,4 @@
-export default function(length: number) {
-  (value: string) => value.length > length
+export default (length: number) => (value: string) => {
+  if(!value.length) return false
+  return value.length < length
 }

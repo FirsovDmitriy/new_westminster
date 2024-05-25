@@ -30,7 +30,6 @@ const Dialog = ({ show, onClose, imageUrl }: DialogProps) => {
   const deleteProfileImage = React.useCallback(async () => {
     const key = imageUrl.split('storage/v1/object/public/avatars/')[1]
     await deleteFile(key).unwrap()
-    console.log('Delete img')
   }, [imageUrl, deleteFile])
 
   React.useEffect(() => {

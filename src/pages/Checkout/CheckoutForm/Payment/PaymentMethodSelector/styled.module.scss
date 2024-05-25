@@ -1,0 +1,50 @@
+.PaymentMethodSelector {
+  margin-top: 1.875rem;
+}
+
+.Card {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line-color);
+  border-radius: $radius;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.Card__Text {
+  margin-left: 1rem;
+}
+
+.RadioButton {
+  display: flex;
+  align-items: center;
+}
+
+.RadioButton__Input {
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  &:checked {
+  ~ .RadioButton__Content::before {
+      background: var(--accent-color);
+      content: '';
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 9999px;
+      display: block;
+      place-self: center;
+    }
+  }
+}
+
+.RadioButton__Content {
+  display: grid;
+  border: 2px solid var(--accent-color);
+  border-radius: 9999px;
+  width: 24px;
+  height: 24px;
+}

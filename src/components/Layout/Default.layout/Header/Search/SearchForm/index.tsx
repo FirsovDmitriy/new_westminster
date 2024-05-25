@@ -8,7 +8,7 @@ import { useSearchGoodsByNameQuery } from '@/store/api/endpoints/goods.endpoint'
 import Preloader from '@/components/UI-Kit/Preloader'
 import { Goods } from '@/types/Goods'
 import useDebounce from '@/hooks/useDebounce'
-import SearchFormCard from '../SearchFormCard'
+import SearchCard from '../SearchCard'
 import useLock from '@/hooks/useLock'
 
 interface SearchFormProps {
@@ -27,16 +27,11 @@ const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ 
   }
 
   const { data, isLoading } = useSearchGoodsByNameQuery(searchQuery !== '' ? value : null)
+  console.log('result search', data)
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
   }
-
-  React.useEffect(() => {
-    return () => {
-      setSearchQuery('')
-    }
-  }, [])
 
   useLock()
 
@@ -80,7 +75,7 @@ const SearchForm = React.forwardRef<Ref, SearchFormProps>(function SearchForm({ 
               return <h3 className={styled.noResults}>Nothing found</h3>
             } else {
               return data?.map((card: Goods) => (
-                <SearchFormCard
+                <SearchCard
                   onClose={onClose}
                   item={card}
                   key={card.id}

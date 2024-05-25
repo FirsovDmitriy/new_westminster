@@ -1,8 +1,6 @@
 import { ToastOptions } from "./type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/store";
-// import { v4 as uuidv4 } from 'uuid';
-
 type Toasts = {
   toasts: ToastOptions[]
 }
@@ -18,7 +16,6 @@ const slice = createSlice({
   reducers: {
     add: (state, { payload }) => {
       state.toasts.push({
-        // id: uuidv4(),
         ...payload,
         requestClose: false
       })

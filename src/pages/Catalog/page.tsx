@@ -17,7 +17,9 @@ const CatalogPage = () => {
   const currentPageValue = searchParams.get('page') ?? 1
   const sorting = searchParams.get('sorting') ?? 'price_asc'
   const [page, setPage] = React.useState(Number(currentPageValue))
-  const [priceSort, setPriceSort] = React.useState<PriceSort>(sorting as PriceSort)
+  const [priceSort, setPriceSort] = React.useState<PriceSort>(
+    sorting as PriceSort
+  )
 
   const { data, isLoading } = useGetAllGoodsQuery({ page, priceSort })
 
@@ -25,7 +27,7 @@ const CatalogPage = () => {
     const currentPage = String(page)
     setSearchParams({
       page: currentPage,
-      sorting: priceSort
+      sorting: priceSort,
     })
   }, [page, priceSort, setSearchParams])
 
@@ -35,53 +37,59 @@ const CatalogPage = () => {
 
   return (
     <React.Fragment>
-      <section className={styled.section}>
-        <Container className={styled.filterRow}>
-          <div className={styled.priceSort}>
-            <p className={styled.priceSortLabel}>Sort by</p>
-            <SelectMenus
-              placeholder='Select...'
-              value={priceSort}
-              onChange={handleChange}
-              options={[
-                {
-                  value: 'price_asc',
-                  label: 'Price, low to high'
-                },
-                {
-                  value: 'price_desc',
-                  label: 'Price, high to low'
-                },
-              ]}
-            />
+      <section className={styled.Catalog}>
+        <Container className={styled.Catalog__Container}>
+          <h2>Catalog</h2>
+          <div className={styled.Catalog__Row}>
+            <div className={styled.PriceSort}>
+              <p className={styled.PriceSort__Label}>Sort by:</p>
+              <SelectMenus
+                placeholder="Select..."
+                value={priceSort}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: 'price_asc',
+                    label: 'Price, low to high',
+                  },
+                  {
+                    value: 'price_desc',
+                    label: 'Price, high to low',
+                  },
+                ]}
+              />
+            </div>
           </div>
-        </Container>
-        <Showcase goods={data?.items} />
-      </section>
-      <Container className={styled.pagination}>
-          <div className={styled.paginationActions}>
-            <IconButton
-              onClick={() => setPage(prev => prev - 1)}
-              disabled={page === 1}
-            >
-              <MoveLeft />
-            </IconButton>
-            <IconButton
-              onClick={() => setPage(prev => prev + 1)}
-              disabled={page === data?.meta.total_pages}
-            >
-              <MoveRight />
-            </IconButton>
+
+          <div className={styled.Catalog__Showcase}>
+            <Showcase goods={data?.items} />
           </div>
-          <span className={styled.paginationInfo}>
-            <p>Page</p>
-            <span>
-              {data?.meta.current_page} of{' '}
-              {data?.meta.total_pages}
+
+          <div className={styled.Pagination}>
+            <div className={styled.Pagination__Arrows}>
+              <IconButton
+                onClick={() => setPage(prev => prev - 1)}
+                disabled={page === 1}>
+                <MoveLeft />
+              </IconButton>
+              <IconButton
+                onClick={() => setPage(prev => prev + 1)}
+                disabled={page === data?.meta.total_pages}>
+                <MoveRight />
+              </IconButton>
+            </div>
+            <span className={styled.Pagination__Meta}>
+              <p>Page</p>
+              <span>
+                {data?.meta.current_page} of {data?.meta.total_pages}
+              </span>
+              <span>All {data?.meta.total_items}</span>
             </span>
-            <span>All { data?.meta.total_items }</span>
-          </span>
+          </div>
+
         </Container>
+      </section>
+
       {isLoading && <Preloader />}
     </React.Fragment>
   )

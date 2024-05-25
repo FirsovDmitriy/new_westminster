@@ -1,5 +1,5 @@
-.cart {
-  --padding: 1.25rem;
+.Cart {
+  --padding: 1rem;
   position: fixed;
   inset: 0 0 0 auto;
   z-index: 99;
@@ -9,54 +9,63 @@
   background-color: var(--background-color);
 }
 
-.header {
+.Header {
   display: flex;
   justify-content: space-between;
   padding: var(--padding);
 }
 
-.headerRow {
+.Header__Row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.spaceBlock {
+.Header__SpaceBlock {
   width: 24px;
 }
 
-.main {
+.Cart__Main {
   display: flex;
   flex-direction: column;
   flex: auto;
 }
 
-.empty {
+.Cart__Empty {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.goodsList {
+.Cart__List {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  gap: 1.8rem;
+  gap: 1.25rem;
   overflow-y: auto;
   padding: var(--padding);
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.Footer {
   margin-top: auto;
   padding: var(--padding);
 }
 
+.Footer__Row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.Footer__Button {
+  text-decoration: none;
+  width: 100%;
+}
+
 @media (max-width: 992px) {
-  .cart {
+  .Cart {
     width: 100%;
   }
 }

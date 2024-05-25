@@ -1,31 +1,32 @@
-.quantityInput {
+.Counter {
+  background: var(--secondary-background-color);
   display: inline-flex;
   align-items: center;
-  background: var(--secondary-background-color);
   border-radius: $radius;
 }
 
-.input {
+.Counter__TextField {
   background-color: transparent;
+  color: var(--text-color);
   font: {
     size: 1rem;
   }
-  flex: auto;
-  width: 2.4rem;
-  padding: 0.6rem 0;
   border-radius: $radius;
   border: none;
+  width: 2.4rem;
+  padding: 0.6rem 0;
   text-align: center;
+
   &:focus-visible {
     outline: 2px solid var(--line-color);
     outline-offset: 6px;
-
   }
 }
 
-.button {
-  width: 3.4rem;
-  height: 2.625rem;
+.Counter__Button {
+  padding: 0.75rem !important;
+  flex-basis: 2rem;
+  flex-shrink: 0;
   @media (any-hover: hover) {
     &:hover {
       color: var(--line-color) !important;

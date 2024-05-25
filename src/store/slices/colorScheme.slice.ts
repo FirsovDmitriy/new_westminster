@@ -11,7 +11,7 @@ const initialState: Mode = {
   mode: colorMode ? JSON.parse(colorMode) : 'default'
 }
 
-const colorSchemSlice = createSlice({
+const slice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
@@ -21,8 +21,8 @@ const colorSchemSlice = createSlice({
   }
 })
 
-export const { switchMode } = colorSchemSlice.actions
+export const { switchMode } = slice.actions
 
 export const selectmMode = (state: RootState) => state.theme.mode
 
-export default colorSchemSlice.reducer
+export default slice.reducer

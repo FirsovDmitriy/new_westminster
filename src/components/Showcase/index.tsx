@@ -1,6 +1,5 @@
 import styled from './styled.module.scss'
 import Card from '../Card'
-import Container from '../UI-Kit/Container'
 import { Goods } from '@/types/Goods'
 
 interface ShowcaseProps {
@@ -11,7 +10,7 @@ const Showcase = (props: ShowcaseProps) => {
   const { goods } = props
 
   return (
-    <Container className={styled.showcase}>
+    <div className={styled.showcase}>
       {goods
         ?.filter(item => item.status === 'active')
         .map(item => (
@@ -20,7 +19,7 @@ const Showcase = (props: ShowcaseProps) => {
             key={item.id}
           />
         ))}
-    </Container>
+    </div>
   )
 }
 
