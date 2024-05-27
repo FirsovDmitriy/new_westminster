@@ -1,6 +1,6 @@
-import { GoodsCart } from "./slices/cart.slice"
 
-export const cartCreate = async (data: GoodsCart[]) => {
+
+export const cartCreate = async (data) => {
   try {
     const response = await fetch(`${import.meta.env.VITE_MOKKY_BASE_URL}/cart`, {
       method: 'POST',

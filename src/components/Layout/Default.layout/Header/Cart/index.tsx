@@ -27,27 +27,6 @@ const Cart = ({ className }: ShoppingCartProps) => {
 
   const cart: GoodsCart[] = useTypedSelector(getCart)
 
-  const cartCreate = {
-    lines: cart.map(item => ({
-      quantity: item.quantity,
-      goods_id: item.id
-    })),
-    cart: {
-      createdAt: Date.now(),
-      updatedAt: null
-    },
-    cost: {
-      totalAmount: {
-        amount: 50
-      },
-      subtotalAmount: {
-        amount: 700
-      }
-    }
-  }
-
-  // console.log('cart create', cartCreate)
-
   const goodsTotal = cart.length > 0 ? cart.length : null
 
   return (

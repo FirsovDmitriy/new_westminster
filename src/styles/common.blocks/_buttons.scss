@@ -30,6 +30,11 @@
   &_contained {
     background: var(--text-color);
     color: var(--background-color);
+    &:disabled {
+      background: var(--disabled-color);
+      border-color: var(--disabled-color);
+    }
+
     @media (any-hover: hover) {
       &:hover {
         background: var(--background-color);

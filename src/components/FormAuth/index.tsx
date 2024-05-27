@@ -28,7 +28,7 @@ const FormAuth = () => {
     password: '',
   })
 
-  const { $touch, $invalid, $errors } = useValidation(formValues.email, {
+  const { $touch, $invalid, $errors, $valid } = useValidation(formValues.email, {
     required,
     email,
   })
@@ -170,7 +170,7 @@ const FormAuth = () => {
             </div>
 
             <div className={styled.FormFooter}>
-              <Button className={styled.FormFooter__Button} type="submit">
+              <Button className={styled.FormFooter__Button} type="submit" disabled={!($valid && valid.$valid)}>
                 {isLogin ? 'sign in' : 'registration'}
               </Button>
               {isLogin ? (

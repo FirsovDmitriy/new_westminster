@@ -1,13 +1,15 @@
 import React from "react"
 import { isFunc } from "./utils"
 
-export default function create(rule:any, value:string, validators:any) {
+export default function create(value:string, validators:any) {
   const [$invalid, setInvalid] = React.useState(false)
-  console.log('validators', validators)
+  const [$valid, setValid] = React.useState(false)
   const $params = validators?.$params || {}
 
   React.useEffect(() => {
-    setInvalid(validators.$validator(value))
+    setInvalid(!validators.$validator(value))
+
+    setValid(validators.$validator(value))
   }, [value])
 
   const message = validators.$message
@@ -17,6 +19,7 @@ export default function create(rule:any, value:string, validators:any) {
 
   return {
     $message,
-    $invalid
+    $invalid,
+    $valid
   }
 }

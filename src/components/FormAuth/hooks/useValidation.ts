@@ -15,11 +15,11 @@ export interface ValidationResult {
   $reset: () => void
   $silentErrors: ErrorObject[]
   $errors: ErrorObject[]
+  $valid: boolean
 }
 
 export default function useValidation(value: string, validators: object) {
   const [$dirty, setDirty] = React.useState(false)
-  console.log($dirty)
   const keys = Object.keys(validators)
 
   const result: ValidationResult = {
@@ -29,10 +29,11 @@ export default function useValidation(value: string, validators: object) {
     $invalid: false,
     $silentErrors: [],
     $errors: [],
+    $valid: false
   }
 
   keys.forEach(key => {
-    result[key] = create(key, value, validators[key])
+    result[key] = create(value, validators[key])
   })
 
   result.$silentErrors = keys
@@ -46,9 +47,9 @@ export default function useValidation(value: string, validators: object) {
       }
     })
 
+  result.$valid = keys.every(key => result[key].$valid === true)
+  console.log('$valid', result.$valid)
   result.$errors = result.$dirty ? result.$silentErrors : []
-
-  console.log('Result', result)
 
   return result
 }

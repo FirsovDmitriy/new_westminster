@@ -2,7 +2,7 @@ import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit"
 import auth from "./slices/auth.slice"
 import { api } from "./api"
 import theme from "@/store/slices/colorScheme.slice"
-import cart from '@/store/slices/cart.slice'
+import cart, { calculateTotalSum } from '@/store/slices/cart.slice'
 import toast from '@/components/UI-Kit/Toast/toast.slice'
 import { cartCreate } from "./fetch"
 
@@ -16,8 +16,21 @@ listenerMiddleware.startListening.withTypes<RootState, AppDispatch>()({
   effect: async (_, listenerApi) => {
     listenerApi.cancelActiveListeners()
     await listenerApi.delay(900)
-    
-    const response = await cartCreate(listenerApi.getState().cart)
+
+    const state = listenerApi.getState()
+    listenerApi.dispatch(calculateTotalSum())
+
+    const cartObj = {
+      user_id: state.auth.data.id,
+      lines: state.cart.goods,
+      cost: {
+        totalAmount: {
+          amount: state.cart.totalAmount
+        },
+      }
+    }
+
+    const response = await cartCreate(cartObj)
     console.log('resp', response)
   }
 })
@@ -39,7 +52,7 @@ export const store = configureStore({
 
 store.subscribe(() => {
   const state = store.getState()
-  localStorage.setItem('cart', JSON.stringify(state.cart))
+  localStorage.setItem('cartData', JSON.stringify(state.cart.goods))
 })
 
 export type RootState = ReturnType<typeof store.getState>

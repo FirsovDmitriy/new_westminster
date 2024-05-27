@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 1.5rem;
   transition: color $duration $easing;
+  cursor: pointer;
 
   @media (any-hover: hover) {
     &:hover {

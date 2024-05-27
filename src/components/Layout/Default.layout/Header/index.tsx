@@ -19,8 +19,7 @@ const Header = () => {
         <div>
           <AppLink to={routesPath.HOME}>
             <Typography tag="h1" className={styled.logoText}>
-              {/* New Westminster */}
-              new yorker
+              Westminster
             </Typography>
           </AppLink>
         </div>

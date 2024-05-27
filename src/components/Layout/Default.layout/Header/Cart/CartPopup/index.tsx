@@ -5,10 +5,11 @@ import IconButton from '@/components/UI-Kit/IconButton'
 import useLock from '@/hooks/useLock'
 import styled from './styled.module.scss'
 import useTypedSelector from '@/hooks/useTypedSelector'
-import { getCart } from '@/store/slices/cart.slice'
+import { getCart, getTotalSum } from '@/store/slices/cart.slice'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import routesPath from '@/router/routesPath'
+import { priceFormation } from '@/utils'
 
 interface CartPopupProps {
   goodsTotal: number | null
@@ -21,13 +22,16 @@ const CartPopup = React.forwardRef<Ref, CartPopupProps>(
   function CartPopup(props, ref) {
     const { goodsTotal, setShow } = props
     const cart = useTypedSelector(getCart)
+    const totalSum = useTypedSelector(getTotalSum)
+
+    const formattedValue = priceFormation(totalSum)
 
     useLock()
 
-    const totalSum = cart.reduce(
-      (current, { price, quantity }) => Number(price) * quantity + current,
-      0
-    )
+    // const totalSum = cart.reduce(
+    //   (current, { price, quantity }) => Number(price) * quantity + current,
+    //   0
+    // )
 
     return (
       <div className={styled.Cart} ref={ref}>
@@ -56,7 +60,7 @@ const CartPopup = React.forwardRef<Ref, CartPopupProps>(
               <div className={styled.Footer}>
                 <span className={styled.Footer__Row}>
                   <h3>Total:</h3>
-                  <p>{totalSum} €</p>
+                  <p>{formattedValue}</p>
                 </span>
                 <NavLink
                   className={cn(styled.Footer__Button, 'base-button button button_ghost')}

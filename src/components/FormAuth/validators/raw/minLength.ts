@@ -1,4 +1,5 @@
+import { req } from "../../utils"
+
 export default (length: number) => (value: string) => {
-  if(!value.length) return false
-  return value.length < length
+  return !req(value) || value.length >= length
 }

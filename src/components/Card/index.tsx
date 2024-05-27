@@ -4,8 +4,8 @@ import Image from '@/components/UI-Kit/Image'
 import { Goods } from '@/types/Goods'
 import useAppDispatch from '@/hooks/useAppDispatch'
 import {
-  getCart,
   putGoods,
+  getCart
 } from '@/store/slices/cart.slice'
 import useTypedSelector from '@/hooks/useTypedSelector'
 import { priceFormation } from '@/utils'
